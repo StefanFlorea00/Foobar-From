@@ -84,9 +84,7 @@ function checkLoggedIn(){
 //* INIT
 
 //dirty fix to wait for fetching
-setTimeout(() => {
-    init();
-}, 200);
+db.get(init);
 
 function init() {
     addBeerTemplates(db.getData());
@@ -196,10 +194,12 @@ function addBeerToCart(beer) {
     //check if there is a beer in cart with same id as beer in beers section
     const cartBeers = document.querySelectorAll("#beer-cart-wrapper .beer-wrapper");
     for (let cartBeer of cartBeers) {
-        if (cartBeer.id == beer.id)
+        if (cartBeer.id == beer.id){
             isExistingBeer = true;
-        existingBeer = cartBeer;
+            existingBeer = cartBeer;
+            }
     }
+    console.log(existingBeer);
 
     //create new template in cart
     if (!isExistingBeer) {
